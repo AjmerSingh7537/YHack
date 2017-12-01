@@ -5,5 +5,5 @@
 #
 # Authors: 
 # Roy Khoury
-# Ajmer Gadreh Singh
+# Ajmer Singh Gadreh
 # Nicolas Brodeur-champagne
