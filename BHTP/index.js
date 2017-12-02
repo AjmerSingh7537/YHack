@@ -4,6 +4,8 @@ const rootPath = require('app-root-dir').get();
 const es6Renderer = require('express-es6-template-engine');
 const app = express();
 const patentTrends = require('./backend/googlePatentsTrends.js');
+const googleTrends = require('./backend/googleTrends.js');
+const socialTrends = require('./backend/socialNetworkTrends.js');
 
 let bodyParser = require('body-parser');
 app.use(bodyParser.json()); // to support JSON-encoded bodies
@@ -27,7 +29,22 @@ app.post('/getPatentsResults', function (req,response){
   });
 });
 
+app.post('/getResults', function(req, response) {
+  let data = req.body;
+
+  googleTrends.getAverage(data.technologies, 'November 1, 2017', 'December 1, 2017', (err, res) => {
+  	response.send(JSON.stringify(res));
+  });
+});
+
+app.post('/getSocialNetworkResults', function(req, response) {
+	let data = req.body;
+
+	socialTrends.getNumberOfPosts(data.technologies, 'November 1, 2017', 'December 1, 2017', (err, res) => {
+  	response.send(JSON.stringify(res));
+	});
+});
 
 app.listen(8080, function() {
-  console.log('the application is running');
+  console.log('the application is running on localhost:8080');
 });
