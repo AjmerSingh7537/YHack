@@ -4,12 +4,17 @@
   - Angular 4.0 
   - Node v8.9.1
 
-### Install Virtual Environment
+### Install Environment
   - clone project repo
   ```
   git clone https://github.com/AjmerSingh7537/YHack
   ```
   - npm install
+### Run Project
+  - nodemon index.js
+  or
+  - node index.js
+  
 ### APIs
 basic usage:
 ```
