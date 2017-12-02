@@ -29,5 +29,5 @@ app.get('/getResults', function(req, res) {
 });
 
 app.listen(8080, function() {
-  console.log('the application is running');
+  console.log('the application is running on localhost:8080');
 });
