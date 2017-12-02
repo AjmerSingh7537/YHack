@@ -1,0 +1,19 @@
+{
+  "name": "bhtp",
+  "version": "1.0.0",
+  "description": "Best Hot Technology Predictor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AjmerSingh7537/YHack/tree/master/BHTP"
+  },
+  "author": "Ajmer, Roy, and Nico",
+  "license": "ISC",
+  "dependencies": {
+    "google-trends-api": "^4.3.0",
+    "lodash": "^4.17.4"
+  }
+}
