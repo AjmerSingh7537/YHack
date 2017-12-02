@@ -3,6 +3,7 @@ const path = require('path');
 const rootPath = require('app-root-dir').get();
 const es6Renderer = require('express-es6-template-engine');
 const app = express();
+const patentTrends = require('./backend/googlePatentsTrends.js');
 
 let bodyParser = require('body-parser');
 app.use(bodyParser.json()); // to support JSON-encoded bodies
@@ -18,6 +19,14 @@ app.set('view engine', 'html');
 app.get('/', function(req, res) {
  res.render('home');
 });
+
+app.post('/getPatentsResults', function (req,response){
+  let data=req.body;
+  patentTrends.getNumberOfPatents(data.technologies,"November 2 2017","December 2 2017",(err,res)=>{
+    response.send(JSON.stringify(res));
+  });
+});
+
 
 app.listen(8080, function() {
   console.log('the application is running');
