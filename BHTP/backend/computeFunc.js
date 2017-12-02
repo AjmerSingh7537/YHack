@@ -20,6 +20,21 @@ var theFunction = (trendAverage, socialNum, patentNum) => {
   return total;
 }
 
+var theDegree = (funcTotal) => {
+  let total= funcTotal
+
+  if(total>=90)
+    return 4;
+  else if(total>=80)
+    return 3;
+  else if(total>=70)
+    return 2;
+  else if(total>=50)
+    return 1;
+  else
+    return 0;
+}
+
 var patentPart = (patentNum) => {
   if(patentNum>= 5000)
     return 25;
@@ -49,7 +64,6 @@ var socialPart = (socialNum) => {
     return 5;
   else
     return 0;
+
+
 }
-
-
-console.log(theFunction((socialTrends.getNumberOfPosts("Machine Learning", 'November 1, 2017', 'December 1, 2017'),(googleTrends.getAverage("Machine Learning", 'November 1, 2017', 'December 1, 2017')),(patentTrends.getNumberOfPatents("Machine Learning","November 2 2017","December 2 2017")))));
