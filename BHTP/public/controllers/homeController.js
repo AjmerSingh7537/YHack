@@ -3,6 +3,7 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 	$scope.techsToSearch = [];
 	$scope.googleSearchesRatio = 0;
 	$scope.socialNetworkSearches = 0;
+	$scope.patentSearches = 0;
 
 	$scope.addTech = function(index) {
 		if(!_.isEmpty($scope.technology)) {
@@ -52,9 +53,31 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 		}
 	}
 
+	// Get Patents trends results
+	$scope.getPatentsTrend = function() {
+		console.log("Calculating ...");
+		$http({
+			method: "POST",
+			url: "/getPatentsResults",
+			data: {
+				technologies: $scope.techsToSearch
+			}
+		}).then(onSuccess, onFailure);
+
+		function onSuccess(result) {
+			$scope.patentSearches = result.data;
+			console.log(result.data);
+		}
+
+		function onFailure() {
+			console.log("failed");
+		}
+	}
+
 	// Executes all trends fetching functions
 	$scope.submit = function() {
 		$scope.getGoogleTrend();
 		$scope.getSocialNetworkTrend();
+		$scope.getPatentsTrend();
 	}
 }]);

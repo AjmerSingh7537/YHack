@@ -3,7 +3,7 @@ const path = require('path');
 const rootPath = require('app-root-dir').get();
 const es6Renderer = require('express-es6-template-engine');
 const app = express();
-const patentTrends = require('./backend/googlePatentsTrends.js');
+const patentTrends = require('./backend/googlePatentTrends.js');
 const googleTrends = require('./backend/googleTrends.js');
 const socialTrends = require('./backend/socialNetworkTrends.js');
 

@@ -17,7 +17,10 @@ var getAverage = (keyword, startTime, endTime, callback) => {
         values.push(obj[index].value[0]);
       }
     }
-    let average = _.ceil(_.mean(values));
+    let average = {
+      avg: _.ceil(_.mean(values)),
+      vals: values
+    };
     callback(undefined, average);
   })
   .catch(function(err){

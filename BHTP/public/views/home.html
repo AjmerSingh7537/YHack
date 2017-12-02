@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Fixed Top Navbar Example for Bootstrap</title>
+    <title>ANSR</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -34,7 +34,6 @@
     </nav>
     <div class="md-inline-form" ng-app="homeModule">
       <div ng-controller="homeController as hc" layout="column" ng-cloak class="md-inline-form">
-          {{googleSearches}}
         <form class="container mt-5 mb-0" ng-submit="addTech($index)">
           <h2> Tech Analysis </h2>
             <md-input-container class="mt-0" ng-repeat="tech in techsToSearch track by $index">
@@ -47,7 +46,7 @@
 
           <md-input-container class="md-block mt-4">
             <label>Enter technologies you would like to analyze</label>
-            <input md-no-asterisk ng-model="technology" autofocus>
+            <input md-no-asterisk ng-model="technology" autofocus autocomplete="off">
           </md-input-container>
         </form>
         <div class="container mt-0">
