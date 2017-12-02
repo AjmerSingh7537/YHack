@@ -34,7 +34,6 @@
     </nav>
     <div class="md-inline-form" ng-app="homeModule">
       <div ng-controller="homeController as hc" layout="column" ng-cloak class="md-inline-form">
-          {{googleSearches}}
         <form class="container mt-5 mb-0" ng-submit="addTech($index)">
           <h2> Tech Analysis </h2>
             <md-input-container class="mt-0" ng-repeat="tech in techsToSearch track by $index">
