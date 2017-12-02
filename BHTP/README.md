@@ -1,9 +1,11 @@
 # Best Hot Technology Predictor
 
 ### Prerequisites
-  - Angular 4.0 
+  - Angular v1.5.6
   - Node v8.9.1
-
+  - Express v4.16.2
+  - Bootstrap 4
+  
 ### Install Environment
   - clone project repo
   ```
