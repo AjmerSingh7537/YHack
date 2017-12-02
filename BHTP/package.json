@@ -14,6 +14,8 @@
   "author": "Ajmer, Roy, and Nico",
   "license": "ISC",
   "dependencies": {
+    "@angular/cdk": "^5.0.0-rc.2",
+    "@angular/material": "^5.0.0-rc.2",
     "app-root-dir": "^1.0.2",
     "express": "^4.16.2",
     "express-es6-template-engine": "^2.0.2",
