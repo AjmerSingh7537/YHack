@@ -50,7 +50,7 @@ app.post('/getSocialNetworkResults', function(req, response) {
 app.post('/computeFunction', function(req, response) {
 	let data = req.body;
 
-	let total = func.theFunction(data.googleTrends, data.socialNetworks, data.googlePatents, (err, res)) => {res});
+	let total = func.theFunction(data.googleTrends, data.socialNetworks, data.googlePatents);
   let degree = func.theDegree(total);
 
   let result = {
