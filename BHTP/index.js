@@ -3,7 +3,8 @@ const path = require('path');
 const rootPath = require('app-root-dir').get();
 const es6Renderer = require('express-es6-template-engine');
 const app = express();
-const trends = require('./backend/backend.js');
+const googleTrends = require('./backend/googleTrends.js');
+const socialTrends = require('./backend/socialNetworkTrends.js');
 
 let bodyParser = require('body-parser');
 app.use(bodyParser.json()); // to support JSON-encoded bodies
@@ -20,12 +21,20 @@ app.get('/', function(req, res) {
  res.render('home');
 });
 
-app.get('/getResults', function(req, res) {
-  //let data = req.body;
-  trends.getAverage('machine learning', 'November 1, 2017', 'December 1, 2017', (err, res) => {
-    console.log('from index: ' + res);
+app.post('/getResults', function(req, response) {
+  let data = req.body;
+
+  googleTrends.getAverage(data.technologies, 'November 1, 2017', 'December 1, 2017', (err, res) => {
+  	response.send(JSON.stringify(res));
   });
-  res.render('home');
+});
+
+app.post('/getSocialNetworkResults', function(req, response) {
+	let data = req.body;
+
+	socialTrends.getNumberOfPosts(data.technologies, 'November 1, 2017', 'December 1, 2017', (err, res) => {
+  	response.send(JSON.stringify(res));
+	});
 });
 
 app.listen(8080, function() {
