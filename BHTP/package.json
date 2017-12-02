@@ -13,7 +13,12 @@
   "author": "Ajmer, Roy, and Nico",
   "license": "ISC",
   "dependencies": {
+    "app-root-dir": "^1.0.2",
+    "express": "^4.16.2",
+    "express-es6-template-engine": "^2.0.2",
     "google-trends-api": "^4.3.0",
-    "lodash": "^4.17.4"
+    "http-server": "^0.10.0",
+    "lodash": "^4.17.4",
+    "nodemon": "^1.12.1"
   }
 }
