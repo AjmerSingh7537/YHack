@@ -11,9 +11,7 @@
   ```
   - npm install
 ### Run Project
-  - nodemon index.js
-  or
-  - node index.js
+  - npm run start
   
 ### APIs
 basic usage:
