@@ -1,13 +1,17 @@
 # Best Hot Technology Predictor
 
-# Prerequisites
-- Angular 4.0 
-- Node v8.9.1
+### Prerequisites
+  - Angular 4.0 
+  - Node v8.9.1
 
-# APIs
 ### Install Virtual Environment
+  - clone project repo
+  ```
+  git clone https://github.com/AjmerSingh7537/YHack
+  ```
+  - npm install
+### APIs
 basic usage:
-
 ```
   https://patents.google.com/xhr/query?url=q=machine+learning
 ```
