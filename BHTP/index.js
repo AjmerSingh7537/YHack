@@ -6,6 +6,8 @@ const app = express();
 const patentTrends = require('./backend/googlePatentTrends.js');
 const googleTrends = require('./backend/googleTrends.js');
 const socialTrends = require('./backend/socialNetworkTrends.js');
+const func = require('./backend/computeFunc.js');
+
 
 let bodyParser = require('body-parser');
 app.use(bodyParser.json()); // to support JSON-encoded bodies
@@ -44,6 +46,23 @@ app.post('/getSocialNetworkResults', function(req, response) {
   	response.send(JSON.stringify(res));
 	});
 });
+
+app.post('/computeFunction', function(req, response) {
+	let data = req.body;
+
+	let total = func.theFunction(data.googleTrends, data.socialNetworks, data.googlePatents, (err, res)) => {res});
+  let degree = func.theDegree(total);
+
+  let result = {
+    total: total,
+    degree: degree
+  }
+
+  response.sendf(JSON.stringify(result));
+
+});
+
+
 
 app.listen(8080, function() {
   console.log('the application is running on localhost:8080');
