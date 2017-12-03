@@ -23,7 +23,6 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 
 		function onSuccess(result) {
 			$scope.googleSearchesRatio = result.data;
-			console.log(result.data);
 			$scope.attemptCalculate();
 		}
 
@@ -45,7 +44,6 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 
 		function onSuccess(result) {
 			$scope.socialNetworkSearches = result.data;
-			console.log(result.data);
 			$scope.attemptCalculate();
 		}
 
@@ -67,7 +65,6 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 
 		function onSuccess(result) {
 			$scope.patentSearches = result.data;
-			console.log(result.data);
 			$scope.attemptCalculate();
 		}
 
