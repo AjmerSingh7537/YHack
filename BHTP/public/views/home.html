@@ -39,8 +39,7 @@
             <md-input-container class="mt-0" ng-repeat="tech in techsToSearch track by $index">
               <div class="card card-inverse card-success">
                 <div class="card-block p-2">
-                  <b style="color:white" ng-hide="options" ng-mouseover="options=true" > {{techsToSearch[$index]}} </b>
-                  <b style="color:red" ng-show="options" ng-mouseleave="options=fasle" ng-click="deleteTech($index)" > Remove </b>
+                  <b style="color:white" title="Click to Delete" ng-click="deleteTech($index)"> {{techsToSearch[$index]}} </b>
                 </div>
               </div>
             </md-input-container>
@@ -82,10 +81,7 @@
             <b>Analyze</b>
           </button>
         </div>
-        <div google-chart chart="myChartObject" style="height:600px; width:100%;"></div>
-        <div data-ng-if="calculations" ng-include="'/views/charts.html'"></div>
       </div>
-
     </div>
 
     <!-- Bootstrap core JavaScript
@@ -94,7 +90,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
@@ -103,7 +98,6 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-chart.js/1.0.3/angular-chart.min.js"></script>
-
 
     <!-- Lodash -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
