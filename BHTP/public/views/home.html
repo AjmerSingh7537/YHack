@@ -52,7 +52,7 @@
         </form>
         <div class="container mt-0">
         <div class="row" data-ng-if="calculations">
-          <div class="col-lg-6">
+          <div class="col-lg-6"><center>Best Hot Technology Predictor</center>
             <canvas class="chart chart-bar"
               chart-data="data"
               chart-labels="labels"
@@ -62,11 +62,11 @@
           <div class="col-lg-6" style="max-height: 270px;overflow-y: scroll">
             <div class="card pb-3 mb-2" ng-repeat="word in labels">
               <div class="card-header">
-                <b>{{word}}</b>
+                <center><b>{{word}} = {{calculations[$index].trendCalculation}}% Prediction</b></center>
               </div>
               <div class="card-block">
                 <blockquote class="card-blockquote">
-                  <p>This Technology or Keyword "{{word}}" has been processed through numerous statistics and has returned an overall probability that it will be trending in the near future at <cite title="Source Title">{{calculations[$index].trendCalculation}}%!</cite></p>
+                  <p>This Technology or Keyword <b>"{{word}}"</b> has been processed through numerous statistics and has returned an overall probability that it will be trending in the near future at <cite title="Source Title"><b>{{calculations[$index].trendCalculation}}%</b>!</cite></p>
                     <md-select class="pt-5" placeholder="See older trending statistics" ng-model="frame" md-on-open="loadTimeFrames()">
                       <md-option ng-value="frame" ng-repeat="frame in timeFrames">{{frame.name}}</md-option>
                     </md-select>
