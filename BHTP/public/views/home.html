@@ -50,6 +50,15 @@
           </md-input-container>
         </form>
         <div class="container mt-0">
+
+        <div layout="column" ng-cloak>
+          <div layout="column">
+            <md-select placeholder="See older trending statistics" ng-model="frame" md-on-open="loadTimeFrames()">
+              <md-option ng-value="frame" ng-repeat="frame in timeFrames">{{frame.name}}</md-option>
+            </md-select>
+          </div>
+        </div>
+
           <button class="btn btn-primary float-right" data-ng-if="techsToSearch.length !== 0" ng-click="submit()">
             <b>Analyze</b>
           </button>
