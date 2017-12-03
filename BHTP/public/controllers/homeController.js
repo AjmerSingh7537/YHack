@@ -3,6 +3,7 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 	$scope.googleSearchesRatio = -1;
 	$scope.socialNetworkSearches = -1;
 	$scope.patentSearches = -1;
+	$scope.calculations = 0;
 
 	$scope.addTech = function(index) {
 		if(!_.isEmpty($scope.technology)) {
@@ -103,7 +104,8 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 		}).then(onSuccess, onFailure);
 
 		function onSuccess(result) {
-			console.log(result);
+			$scope.calculations = result.data;
+			console.log($scope.calculations);
 		}
 
 		function onFailure() {
