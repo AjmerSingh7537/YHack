@@ -1,9 +1,8 @@
 app.controller('homeController', ['$scope', '$http', function($scope, $http) {
-	$scope.inputsToShow = ['1'];
 	$scope.techsToSearch = [];
-	$scope.googleSearchesRatio = 0;
-	$scope.socialNetworkSearches = 0;
-	$scope.patentSearches = 0;
+	$scope.googleSearchesRatio = -1;
+	$scope.socialNetworkSearches = -1;
+	$scope.patentSearches = -1;
 
 	$scope.addTech = function(index) {
 		if(!_.isEmpty($scope.technology)) {
@@ -25,6 +24,7 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 		function onSuccess(result) {
 			$scope.googleSearchesRatio = result.data;
 			console.log(result.data);
+			$scope.attemptCalculate();
 		}
 
 		function onFailure() {
@@ -46,6 +46,7 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 		function onSuccess(result) {
 			$scope.socialNetworkSearches = result.data;
 			console.log(result.data);
+			$scope.attemptCalculate();
 		}
 
 		function onFailure() {
@@ -67,6 +68,7 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 		function onSuccess(result) {
 			$scope.patentSearches = result.data;
 			console.log(result.data);
+			$scope.attemptCalculate();
 		}
 
 		function onFailure() {
@@ -79,5 +81,30 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 		$scope.getGoogleTrend();
 		$scope.getSocialNetworkTrend();
 		$scope.getPatentsTrend();
+	}
+
+	// is called after every function of submit, 
+	$scope.attemptCalculate = function() {
+		if($scope.googleSearchesRatio.avg < 0 || $scope.socialNetworkSearches.total < 0 || $scope.patentSearches < 0) {
+			return;
+		}
+
+		$http({
+		method: "POST",
+		url: "/computeFunction",
+		data: {
+			googleTrends: $scope.googleSearchesRatio.avg,
+			socialNetworks: $scope.socialNetworkSearches.total,
+			googlePatents: $scope.patentSearches
+		}
+		}).then(onSuccess, onFailure);
+
+		function onSuccess(result) {
+			console.log(result.data);
+		}
+
+		function onFailure() {
+			console.log("failed");
+		}
 	}
 }]);
