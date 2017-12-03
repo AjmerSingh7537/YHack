@@ -32,14 +32,15 @@
         ANSR
       </a>
     </nav>
-    <div class="md-inline-form" ng-app="homeModule">
+    <div id="app" class="md-inline-form" ng-app="homeModule">
       <div ng-controller="homeController as hc" layout="column" ng-cloak class="md-inline-form">
         <form class="container mt-5 mb-0" ng-submit="addTech($index)">
           <h2> Tech Analysis </h2>
             <md-input-container class="mt-0" ng-repeat="tech in techsToSearch track by $index">
               <div class="card card-inverse card-success">
                 <div class="card-block p-2">
-                  <b style="color:white"> {{techsToSearch[$index]}} </b>
+                  <b style="color:white" ng-hide="options" ng-mouseover="options=true" > {{techsToSearch[$index]}} </b>
+                  <b style="color:red" ng-show="options" ng-mouseleave="options=fasle" ng-click="deleteTech($index)" > Remove </b>
                 </div>
               </div>
             </md-input-container>
@@ -81,10 +82,11 @@
             <b>Analyze</b>
           </button>
         </div>
+        <div google-chart chart="myChartObject" style="height:600px; width:100%;"></div>
+        <div data-ng-if="calculations" ng-include="'/views/charts.html'"></div>
       </div>
 
     </div>
-
 
     <!-- Bootstrap core JavaScript
     <!-- Placed at the end of the document so the pages load faster -->
@@ -111,5 +113,6 @@
 
     <script src="../modules/homeModule.js"></script>
     <script src="../controllers/homeController.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   </body>
 </html>
