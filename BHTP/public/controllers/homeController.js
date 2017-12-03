@@ -28,11 +28,9 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 		if (index < $scope.techsToSearch.length) {
 			$scope.techsToSearch.splice(index, 1);
 		}
-		console.log('going to delete');
 	}
 	// Get google trends results
 	$scope.getGoogleTrend = function() {
-		console.log("Calculating ...");
 		$http({
 			method: "POST",
 			url: "/getResults",
@@ -53,7 +51,6 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 
 	// Get social network trends results
 	$scope.getSocialNetworkTrend = function() {
-		console.log("Calculating ...");
 		$http({
 			method: "POST",
 			url: "/getSocialNetworkResults",
@@ -72,10 +69,8 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 		}
 	}
 
-
 	// Get Patents trends results
 	$scope.getPatentsTrend = function() {
-		console.log("Calculating ...");
 		$http({
 			method: "POST",
 			url: "/getPatentsResults",
@@ -106,11 +101,6 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 		if($scope.googleSearchesRatio.avg < 0 || $scope.socialNetworkSearches.total < 0 || $scope.patentSearches < 0) {
 			return;
 		}
-		console.log("===IGNORE===");
-		// console.log($scope.googleSearchesRatio);
-		// console.log($scope.socialNetworkSearches);
-		// console.log($scope.patentSearches);
-		console.log("===IGNORE===");
 
 		$http({
 		method: "POST",
@@ -134,7 +124,6 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 	}
 
 	$scope.prepareChart = function() {
-		console.log("preparing chart");
 		let lb = [];
 		let dt = [];
 		for(var index in $scope.calculations) {
