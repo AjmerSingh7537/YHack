@@ -6,7 +6,7 @@ const app = express();
 const patentTrends = require('./backend/googlePatentTrends.js');
 const googleTrends = require('./backend/googleTrends.js');
 const socialTrends = require('./backend/socialNetworkTrends.js');
-const trendCalculator = require('./backend/computeFunc.js');
+  const trendCalculator = require('./backend/computeFunc.js');
 
 
 let bodyParser = require('body-parser');
@@ -33,8 +33,7 @@ app.post('/getPatentsResults', function (req,response){
 
 app.post('/getResults', function(req, response) {
   let data = req.body;
-  googleTrends.getAverage(data.technologies, 'November 1, 2017', 'December 1, 2017', (err, res) => {
-    console.log('res from index: ' + JSON.stringify(res));
+  googleTrends.getAverage(data.technologies, 'November 1, 2017', 'December 1, 2017', (err, res) => 
   	response.send(JSON.stringify(res));
   });
 });
@@ -48,14 +47,9 @@ app.post('/getSocialNetworkResults', function(req, response) {
 
 app.post('/computeFunction', function(req, response) {
 	let data = req.body;
-	let total = trendCalculator.calculateTrend(data.googleTrends, data.socialNetworks, data.googlePatents);
-  let degree = trendCalculator.theDegree(total);
+	let total = trendCalculator.returnWithCalc(data.googleTrends, data.socialNetworks, data.googlePatents, (err, res) => {
+    response.send(JSON.stringify(res));
 
-  let result = {
-    total: total,
-    degree: degree
-  }
-  response.send(JSON.stringify(result));
 });
 
 app.listen(8080, function() {
