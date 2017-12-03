@@ -5,6 +5,18 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 	$scope.patentSearches = -1;
 	$scope.calculations = 0;
 
+	$scope.timeFrame = null;
+    $scope.timeFrames =  $scope.timeFrames || [
+			    { id: 1, name: 'One Week' },
+			    { id: 2, name: 'One Month' },
+			    { id: 3, name: 'Six Months' },
+			    { id: 4, name: 'One Year' }
+			];
+
+	// chart variables
+	$scope.labels = [];
+	$scope.data = [];
+
 	$scope.addTech = function(index) {
 		if(!_.isEmpty($scope.technology)) {
 			$scope.techsToSearch.push($scope.technology);
@@ -106,10 +118,35 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 		function onSuccess(result) {
 			$scope.calculations = result.data;
 			console.log($scope.calculations);
+			$scope.prepareChart();
 		}
 
 		function onFailure() {
 			console.log("failed");
 		}
 	}
+
+	$scope.prepareChart = function() {
+		console.log("preparing chart");
+		let lb = [];
+		let dt = [];
+		for(var index in $scope.calculations) {
+			lb.push($scope.calculations[index].word);
+			dt.push($scope.calculations[index].trendCalculation);
+		}
+		$scope.labels = lb;
+		$scope.data = dt;
+		$scope.options = {
+		    scales: {
+		        yAxes: [{
+		            ticks: {
+		                min: 0,
+		                max: 100,
+		                padding: 30
+		            }
+		        }]
+		    }
+		}
+	}
+
 }]);
