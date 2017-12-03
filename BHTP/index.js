@@ -34,7 +34,9 @@ app.post('/getPatentsResults', function (req,response){
 app.post('/getResults', function(req, response) {
   let data = req.body;
   googleTrends.getAverage(data.technologies, 'November 1, 2017', 'December 1, 2017', (err, res) => {
-  	response.send(JSON.stringify(res));
+  	//response.send(JSON.stringify(res));
+    console.log('res from index: ' + JSON.stringify(res));
+    response.render('charts', {asd: JSON.stringify(res)});
   });
 });
 
@@ -56,8 +58,6 @@ app.post('/computeFunction', function(req, response) {
   }
   response.send(JSON.stringify(result));
 });
-
-
 
 app.listen(8080, function() {
   console.log('the application is running on localhost:8080');
