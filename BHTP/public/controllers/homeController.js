@@ -23,6 +23,13 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 			$scope.technology = '';
 		}
 	}
+
+	$scope.deleteTech = function(index) {
+		if (index < $scope.techsToSearch.length) {
+			$scope.techsToSearch.splice(index, 1);
+		}
+		console.log('going to delete');
+	}
 	// Get google trends results
 	$scope.getGoogleTrend = function() {
 		console.log("Calculating ...");
