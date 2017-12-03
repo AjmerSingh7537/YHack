@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawStuff);
+
+      function drawStuff() {
+        var data = new google.visualization.arrayToDataTable([
+          ['Name of the Technology', 'Percentage (%)'],
+          ["Machine Learning", 83],
+          ["AR", 76],
+          ["AI", 56],
+          ["VR", 81],
+          ['Deep Learning', 78]
+        ]);
+
+        var options = {
+          title: 'Hot Technology Predictor',
+          width: 900,
+          legend: { position: 'none' },
+          chart: { title: 'Hottest Trending Technology',
+                   subtitle: 'probability of trending' },
+          bars: 'vertical', // Required for Material Bar Charts.
+          axes: {
+            y: {
+              0: { side: 'left', label: 'Percentage (%)'} // Top x-axis.
+            }
+          },
+          bar: { groupWidth: "90%" }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+        chart.draw(data, options);
+      };
+    </script>
+  </head>
+  <body>
+    <div id="top_x_div" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
