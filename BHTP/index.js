@@ -33,7 +33,7 @@ app.post('/getPatentsResults', function (req,response){
 
 app.post('/getResults', function(req, response) {
   let data = req.body;
-  googleTrends.getAverage(data.technologies, 'November 1, 2017', 'December 1, 2017', (err, res) => 
+  googleTrends.getAverage(data.technologies, 'November 1, 2017', 'December 1, 2017', (err, res) => {
   	response.send(JSON.stringify(res));
   });
 });
@@ -49,7 +49,7 @@ app.post('/computeFunction', function(req, response) {
 	let data = req.body;
 	let total = trendCalculator.returnWithCalc(data.googleTrends, data.socialNetworks, data.googlePatents, (err, res) => {
     response.send(JSON.stringify(res));
-
+  });
 });
 
 app.listen(8080, function() {
