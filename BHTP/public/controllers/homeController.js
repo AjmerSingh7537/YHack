@@ -60,7 +60,6 @@ app.controller('homeController', ['$scope', '$http', '$mdDialog', function($scop
 	}
 	// Get google trends results
 	$scope.getGoogleTrend = function() {
-		console.log("Calculating ...");
 		$http({
 			method: "POST",
 			url: "/getResults",
@@ -81,7 +80,6 @@ app.controller('homeController', ['$scope', '$http', '$mdDialog', function($scop
 
 	// Get social network trends results
 	$scope.getSocialNetworkTrend = function() {
-		console.log("Calculating ...");
 		$http({
 			method: "POST",
 			url: "/getSocialNetworkResults",
@@ -100,10 +98,8 @@ app.controller('homeController', ['$scope', '$http', '$mdDialog', function($scop
 		}
 	}
 
-
 	// Get Patents trends results
 	$scope.getPatentsTrend = function() {
-		console.log("Calculating ...");
 		$http({
 			method: "POST",
 			url: "/getPatentsResults",
@@ -157,7 +153,6 @@ app.controller('homeController', ['$scope', '$http', '$mdDialog', function($scop
 	}
 
 	$scope.prepareChart = function() {
-		console.log("preparing chart");
 		let lb = [];
 		let dt = [];
 		for(var index in $scope.calculations) {
