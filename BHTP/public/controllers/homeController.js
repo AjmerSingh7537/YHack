@@ -32,7 +32,7 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 	}
 
 	$scope.viewDetailsTrendGraph= function(index, frame) {
-		$http.({
+		$http({
 			method: "POST",
 			url: "/getDatas",
 			data: {

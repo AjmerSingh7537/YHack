@@ -2,17 +2,29 @@ const googleTrends = require('google-trends-api');
 
 
 var getDataTrend = (keyword, startTime, callback) => {
-      keyword.map((value, key) => {
 
-
-      //new Date(Date.now() + -30*24*3600*1000).toDateString()
-
+        let int =0;
+        switch (startTime) {
+          case 'One Week':
+                  int =7;
+            break;
+            case 'One Month':
+                  int =30;
+              break;
+              case 'Six Months':
+                    int =182;
+                break;
+                case 'One Year':
+                    int =365;
+                  break;
+          default: int =30; break;
+        }
       let size = keyword.length - 1;
 
       googleTrends.interestOverTime({
-        keyword: JSON.stringify(value),
-        startTime: new Date((Date.now() + -(startTime*7)*24*3600*1000)),
-        endTime: new Date((Date.now()).toDateString())
+        keyword: JSON.stringify(keyword),
+        startTime: new Date((Date.now() + -(int)*24*3600*1000)),
+        endTime: new Date(Date.now())
       })
       .then(function(results){
         let data = JSON.parse(results);
@@ -21,16 +33,15 @@ var getDataTrend = (keyword, startTime, callback) => {
 
       for (var i in obj) {
         if (obj.hasOwnProperty(i)) {
-          values.push(obj[i].value[0]);
+          values.push(obj[i]);
         }
       }
-
-      if(values.length-1===size)
+        console.log(values);
         callback(undefined, values);
     })
     .catch(function(err){
       console.error('Oh no there was an error', err);
-    });
+
   })
 }
 
