@@ -5,7 +5,7 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 	$scope.patentSearches = -1;
 	$scope.calculations = 0;
 
-	$scope.timeFrame = null;
+	$scope.frame = null;
     $scope.timeFrames =  $scope.timeFrames || [
 			    { id: 1, name: 'One Week' },
 			    { id: 2, name: 'One Month' },
@@ -27,6 +27,25 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 	$scope.deleteTech = function(index) {
 		if (index < $scope.techsToSearch.length) {
 			$scope.techsToSearch.splice(index, 1);
+		}
+	}
+
+	$scope.viewDetailsTrendGraph= function(index, frame) {
+		$http({
+			method: "POST",
+			url: "/getDatas",
+			data: {
+				technologies: $scope.labels[index],
+				numOfWeeks: frame.name
+			}
+		}).then(onSuccess, onFailure);
+
+		function onSuccess() {
+			// put ajmers code
+		}
+
+		function onFailure() {
+			console.log("failed");
 		}
 	}
 	// Get google trends results

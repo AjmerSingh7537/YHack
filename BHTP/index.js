@@ -40,7 +40,7 @@ app.post('/getResults', function(req, response) {
 
 app.post('/getDatas', function(req, response) {
   let data = req.body;
-  googleTrends.getDataTrend(data.technologies,new Date(Date.now() + -30*24*3600*1000).toDateString(), new Date().toDateString(), (err, res) => {
+  dataGraphTrends.getDataTrend(data.technologies,data.numOfWeeks, (err, res) => {
   	response.send(JSON.stringify(res));
   });
 });
