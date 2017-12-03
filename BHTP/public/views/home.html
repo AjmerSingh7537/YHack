@@ -54,7 +54,7 @@
         <div class="row" data-ng-if="calculations">
           <div class="col-lg-6">
             <canvas class="chart chart-bar"
-              chart-data="data" 
+              chart-data="data"
               chart-labels="labels"
               chart-options="options">
             </canvas>
@@ -70,7 +70,7 @@
                     <md-select class="pt-5" placeholder="See older trending statistics" ng-model="frame" md-on-open="loadTimeFrames()">
                       <md-option ng-value="frame" ng-repeat="frame in timeFrames">{{frame.name}}</md-option>
                     </md-select>
-                     <button class="btn btn-success float-right" data-ng-if="frame.name" ng-click="viewDetailsTrendGraph($index)">
+                     <button class="btn btn-success float-right" data-ng-if="frame.name" ng-click="viewDetailsTrendGraph($index, frame)">
                       <b>Show detailed trends</b>
                     </button>
                 </blockquote>
