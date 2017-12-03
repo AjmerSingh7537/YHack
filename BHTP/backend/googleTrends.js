@@ -29,7 +29,7 @@ var getAverage = (keyword, startTime, endTime, callback) => {
         vals: values
       });
 
-      if(key === size) 
+      if(average.length-1===size) 
         callback(undefined, average);
 
     })
