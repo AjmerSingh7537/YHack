@@ -5,6 +5,8 @@ var getNumberOfPosts = (keyword, startTime, endTime, callback) => {
   let size = keyword.length-1;
   let total = [];
   keyword.map((value,key)=> {
+    //console.log(size);
+  //  console.log(keyword.length());
     request("https://api.talkwalker.com/api/v1/search/histogram/published?access_token=demo&q="+value+"&interval=1d&min=1509690000&max=1512229311&pretty=true",
       function(err, res, body) {
 
@@ -24,14 +26,15 @@ var getNumberOfPosts = (keyword, startTime, endTime, callback) => {
           total: totalFrequency,
           all: allFrequencies
         });
-        if(key===size){
+        if(total.length-1===size){
           console.log(total);
-          callback(undefined, total);
-        }
+          (callback(undefined, total));
+       }
 
-    });
+    })
   })
 }
+
 
 module.exports = {
   getNumberOfPosts
