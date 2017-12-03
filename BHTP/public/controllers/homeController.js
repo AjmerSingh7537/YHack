@@ -86,19 +86,24 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 		if($scope.googleSearchesRatio.avg < 0 || $scope.socialNetworkSearches.total < 0 || $scope.patentSearches < 0) {
 			return;
 		}
+		console.log("===IGNORE===");
+		// console.log($scope.googleSearchesRatio);
+		// console.log($scope.socialNetworkSearches);
+		// console.log($scope.patentSearches);
+		console.log("===IGNORE===");
 
 		$http({
 		method: "POST",
 		url: "/computeFunction",
 		data: {
-			googleTrends: $scope.googleSearchesRatio.avg,
-			socialNetworks: $scope.socialNetworkSearches.total,
+			googleTrends: $scope.googleSearchesRatio,
+			socialNetworks: $scope.socialNetworkSearches,
 			googlePatents: $scope.patentSearches
 		}
 		}).then(onSuccess, onFailure);
 
 		function onSuccess(result) {
-			console.log(result.data);
+			console.log(result);
 		}
 
 		function onFailure() {

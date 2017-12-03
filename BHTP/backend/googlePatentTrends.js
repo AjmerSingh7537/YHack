@@ -10,7 +10,10 @@ var getNumberOfPatents=(keywords,startTime,endTime, callback) => {
 	request(url, function(err,res,body) {
 
       let resultData = JSON.parse(body).results.total_num_results;
-      patents.push(resultData);
+      patents.push({
+        word: value,
+        patents: resultData
+      });
 
       if(patents.length-1===size) {
       	(callback(undefined,patents));
