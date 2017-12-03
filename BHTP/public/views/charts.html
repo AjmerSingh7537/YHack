@@ -7,12 +7,12 @@
 
       function drawStuff() {
         var data = new google.visualization.arrayToDataTable([
-          ['Name of the Technology', 'Percentage'],
-          ["Machine Learning", 44],
-          ["AR", 31],
-          ["AI", 12],
-          ["VR", 10],
-          ['Deep Learning', 3]
+          ['Name of the Technology', 'Percentage (%)'],
+          ["Machine Learning", 83],
+          ["AR", 76],
+          ["AI", 56],
+          ["VR", 81],
+          ['Deep Learning', 78]
         ]);
 
         var options = {
@@ -24,7 +24,7 @@
           bars: 'vertical', // Required for Material Bar Charts.
           axes: {
             y: {
-              0: { side: 'left', label: 'Percentage'} // Top x-axis.
+              0: { side: 'left', label: 'Percentage (%)'} // Top x-axis.
             }
           },
           bar: { groupWidth: "90%" }
