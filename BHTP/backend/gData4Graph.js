@@ -1,15 +1,18 @@
 const googleTrends = require('google-trends-api');
 
 
-var getDataTrend = (keyword, startTime, endTime, callback) => {
+var getDataTrend = (keyword, startTime, callback) => {
       keyword.map((value, key) => {
+
+
+      //new Date(Date.now() + -30*24*3600*1000).toDateString()
 
       let size = keyword.length - 1;
 
       googleTrends.interestOverTime({
         keyword: JSON.stringify(value),
-        startTime: new Date(startTime),
-        endTime: new Date(endTime)
+        startTime: new Date((Date.now() + -(startTime*7)*24*3600*1000)),
+        endTime: new Date((Date.now()).toDateString())
       })
       .then(function(results){
         let data = JSON.parse(results);
