@@ -50,11 +50,39 @@
           </md-input-container>
         </form>
         <div class="container mt-0">
+        <div class="row" data-ng-if="calculations">
+          <div class="col-lg-6">
+            <canvas class="chart chart-bar"
+              chart-data="data" 
+              chart-labels="labels"
+              chart-options="options">
+            </canvas>
+          </div>
+          <div class="col-lg-6" style="max-height: 270px;overflow-y: scroll">
+            <div class="card pb-3 mb-2" ng-repeat="word in labels">
+              <div class="card-header">
+                <b>{{word}}</b>
+              </div>
+              <div class="card-block">
+                <blockquote class="card-blockquote">
+                  <p>This trend would fall under the category <cite title="Source Title">[Category]</cite></p>
+                    <md-select class="pt-5" placeholder="See older trending statistics" ng-model="frame" md-on-open="loadTimeFrames()">
+                      <md-option ng-value="frame" ng-repeat="frame in timeFrames">{{frame.name}}</md-option>
+                    </md-select>
+                     <button class="btn btn-success float-right" data-ng-if="frame.name" ng-click="viewDetailsTrendGraph($index)">
+                      <b>Show detailed trends</b>
+                    </button>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        </div>
           <button class="btn btn-primary float-right" data-ng-if="techsToSearch.length !== 0" ng-click="submit()">
             <b>Analyze</b>
           </button>
         </div>
       </div>
+
     </div>
 
 
@@ -69,8 +97,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-google-chart/0.1.0/ng-google-chart.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-google-chart/0.1.0/ng-google-chart.min.js"></script>
+    <!--Angular JS graphs -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-chart.js/1.0.3/angular-chart.min.js"></script>
+
 
     <!-- Lodash -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
