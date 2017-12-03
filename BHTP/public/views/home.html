@@ -51,7 +51,7 @@
         </form>
         <div class="container mt-0">
         <div class="row" data-ng-if="calculations">
-          <div class="col-lg-6">
+          <div class="col-lg-6"><center>Best Hot Technology Predictor</center>
             <canvas class="chart chart-bar"
               chart-data="data"
               chart-labels="labels"
@@ -61,11 +61,12 @@
           <div class="col-lg-6" style="max-height: 270px;overflow-y: scroll">
             <div class="card pb-3 mb-2" ng-repeat="word in labels">
               <div class="card-header">
-                <b>{{word}}</b>
+                <center><b>{{word}} = {{calculations[$index].trendCalculation}}% Prediction</b></center>
               </div>
               <div class="card-block">
                 <blockquote class="card-blockquote">
-                  <p>This trend would fall under the category <cite title="Source Title">[Category]</cite></p>
+                  <p>This Technology or Keyword <b>"{{word}}"</b> has been processed through numerous statistics and has returned an overall probability that it will be trending in the near future at <cite title="Source Title"><b>{{calculations[$index].trendCalculation}}%</b>!</cite>
+                  </br>It is predicted to continue emerging at a <b>Degree of {{calculations[$index].trendDegree}}</b></p>
                     <md-select class="pt-5" placeholder="See older trending statistics" ng-model="frame" md-on-open="loadTimeFrames()">
                       <md-option ng-value="frame" ng-repeat="frame in timeFrames">{{frame.name}}</md-option>
                     </md-select>
@@ -78,6 +79,18 @@
                     </button>
                 </blockquote>
               </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6" style="max-height: 270px;overflow-y: scroll">
+          <div class="card-block" data-ng-if=calculations>
+            <div data-ng-if=calculations>
+              <p><b>Degree 4</b> Technologies are those that have already emerged, are trending, in high demand, and will continue to be</br>
+                <b>Degree 3</b> Technologies are those that are trending, in high demand, and are not finished emerging, unless they are depreciating, they will likely be in the top tier of technologies in the next few months</br>
+                <b>Degree 2</b> Technologies are those that have some following, but are not in high demand,they have either emerged, or just started growing.</br>
+                <b>Degree 1</b> Technologies are those that have either emerged and declined through time, or might be just in their inception</br>
+                <b>Degree 0</b> Technologies are not trending, nor in high demand</br>
+              </p>
             </div>
           </div>
         </div>
