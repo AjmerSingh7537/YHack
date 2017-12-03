@@ -3,8 +3,8 @@ const googleTrends = require('./googleTrends.js');
 const socialTrends = require('./socialNetworkTrends.js');
 const _ = require('lodash');
 
-var theFunction = (trendAverage, socialNum, patentNum) => {
-  total=0;
+var calculateTrend = (trendAverage, socialNum, patentNum) => {
+  let total = 0;
 
   if(trendAverage>75)
   {
@@ -23,13 +23,13 @@ var theFunction = (trendAverage, socialNum, patentNum) => {
 var theDegree = (funcTotal) => {
   let total= funcTotal
 
-  if(total>=90)
+  if(total>=85)
     return 4;
-  else if(total>=80)
+  else if(total>=75)
     return 3;
-  else if(total>=70)
+  else if(total>=65)
     return 2;
-  else if(total>=50)
+  else if(total>=45)
     return 1;
   else
     return 0;
@@ -64,6 +64,9 @@ var socialPart = (socialNum) => {
     return 5;
   else
     return 0;
-
-
 }
+
+module.exports = {
+  calculateTrend,
+  theDegree
+};
