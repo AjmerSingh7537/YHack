@@ -66,7 +66,7 @@
               </div>
               <div class="card-block">
                 <blockquote class="card-blockquote">
-                  <p>This trend would fall under the category <cite title="Source Title">[Category]</cite></p>
+                  <p>This Technology or Keyword "{{word}}" has been processed through numerous statistics and has returned an overall probability that it will be trending in the near future at <cite title="Source Title">{{calculations[$index].trendCalculation}}%!</cite></p>
                     <md-select class="pt-5" placeholder="See older trending statistics" ng-model="frame" md-on-open="loadTimeFrames()">
                       <md-option ng-value="frame" ng-repeat="frame in timeFrames">{{frame.name}}</md-option>
                     </md-select>
