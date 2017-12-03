@@ -1,11 +1,10 @@
-app.controller('homeController', ['$scope', '$http', function($scope, $http) {
+app.controller('homeController', ['$scope', '$http', '$mdDialog', function($scope, $http, $mdDialog) {
 	$scope.techsToSearch = [];
 	$scope.googleSearchesRatio = -1;
 	$scope.socialNetworkSearches = -1;
 	$scope.patentSearches = -1;
 	$scope.calculations = 0;
 
-	$scope.frame = null;
     $scope.timeFrames =  $scope.timeFrames || [
 			    { id: 1, name: 'One Week' },
 			    { id: 2, name: 'One Month' },
@@ -16,6 +15,9 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 	// chart variables
 	$scope.labels = [];
 	$scope.data = [];
+
+	$scope.trendValuesForGraph = [];
+	$scope.trendNameForGraph = [];
 
 	$scope.addTech = function(index) {
 		if(!_.isEmpty($scope.technology)) {
@@ -31,6 +33,7 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 	}
 
 	$scope.viewDetailsTrendGraph= function(index, frame) {
+
 		$http({
 			method: "POST",
 			url: "/getDatas",
@@ -40,8 +43,15 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 			}
 		}).then(onSuccess, onFailure);
 
-		function onSuccess() {
-			// put ajmers code
+		function onSuccess(result) {
+			console.log(result.data);
+			$scope.trendDataForTech = result.data;
+
+			//assign variables that are needed for graph
+			$scope.trendDataForTech.map((value) => {
+				$scope.trendValuesForGraph.push(value.value[0]);
+			});
+			$scope.trendNameForGraph.push($scope.calculations[index].word);
 		}
 
 		function onFailure() {

@@ -69,8 +69,12 @@
                     <md-select class="pt-5" placeholder="See older trending statistics" ng-model="frame" md-on-open="loadTimeFrames()">
                       <md-option ng-value="frame" ng-repeat="frame in timeFrames">{{frame.name}}</md-option>
                     </md-select>
-                     <button class="btn btn-success float-right" data-ng-if="frame.name" ng-click="viewDetailsTrendGraph($index, frame)">
-                      <b>Show detailed trends</b>
+                     <button class="btn btn-success float-right" 
+                        data-ng-if="frame.name" 
+                        ng-click="viewDetailsTrendGraph($index, frame)"
+                        data-toggle="modal"
+                        data-target=".bd-example-modal-lg">
+                      <b>Show trends chart</b>
                     </button>
                 </blockquote>
               </div>
@@ -81,6 +85,15 @@
             <b>Analyze</b>
           </button>
         </div>
+        <div class="row col-lg-2"></div>
+        <div class="col-lg-8 col-lg-offset-2">
+            <canvas class="chart chart-line" 
+              chart-data="trendValuesForGraph"
+              chart-labels="trendNameForGraph">
+            </canvas>
+        </div>
+        <div google-chart chart="myChartObject" style="height:600px; width:100%;"></div>
+        <div data-ng-if="calculations" ng-include="'/views/charts.html'"></div>
       </div>
     </div>
 
