@@ -3,8 +3,40 @@ const googleTrends = require('./googleTrends.js');
 const socialTrends = require('./socialNetworkTrends.js');
 const _ = require('lodash');
 
+var returnWithCalc = (trendObjects,socialObjects,patentObjects, callback) =>
+{
+  let calculationsObject = [];
+
+  trendObjects.map((valueTrend, key) => {
+    let currentWord = valueTrend.word;
+    socialObjects.map((valueSocial, key) => {
+        if(valueSocial.word === currentWord) {
+          patentObjects.map((valuePatent, key) => {
+            if(valuePatent.word === currentWord) {
+              var trendCalculation = calculateTrend(valueTrend.avg, valueSocial.total, valuePatent.patents);
+              var trendDegree = theDegree(trendCalculation);
+              calculationsObject.push({
+                word: currentWord,
+                trend: valueTrend.avg,
+                social: valueSocial.total,
+                patent: valuePatent.patents,
+                trendCalculation: trendCalculation,
+                trendDegree: trendDegree
+              });
+            }
+          })
+        }
+    })
+  });
+  console.log(calculationsObject);
+  callback(undefined, calculationsObject);
+}
+
+
+
 var calculateTrend = (trendAverage, socialNum, patentNum) => {
   let total = 0;
+
 
   if(trendAverage>75)
   {
@@ -67,6 +99,6 @@ var socialPart = (socialNum) => {
 }
 
 module.exports = {
-  calculateTrend,
+  returnWithCalc,
   theDegree
 };

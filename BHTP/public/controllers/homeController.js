@@ -81,7 +81,7 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 		$scope.getPatentsTrend();
 	}
 
-	// is called after every function of submit, 
+	// is called after every function of submit,
 	$scope.attemptCalculate = function() {
 		if($scope.googleSearchesRatio.avg < 0 || $scope.socialNetworkSearches.total < 0 || $scope.patentSearches < 0) {
 			return;

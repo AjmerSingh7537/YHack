@@ -29,9 +29,8 @@ var getAverage = (keyword, startTime, endTime, callback) => {
         vals: values
       });
 
-      if(average.length-1===size) 
+      if(average.length-1===size)
         callback(undefined, average);
-
     })
     .catch(function(err){
       console.error('Oh no there was an error', err);

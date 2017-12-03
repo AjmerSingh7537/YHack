@@ -26,11 +26,8 @@ var getNumberOfPosts = (keyword, startTime, endTime, callback) => {
           total: totalFrequency,
           all: allFrequencies
         });
-        if(total.length-1===size){
-          console.log(total);
+        if(total.length-1===size)
           (callback(undefined, total));
-       }
-
     })
   })
 }
