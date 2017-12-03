@@ -6,8 +6,8 @@ const app = express();
 const patentTrends = require('./backend/googlePatentTrends.js');
 const googleTrends = require('./backend/googleTrends.js');
 const socialTrends = require('./backend/socialNetworkTrends.js');
-  const trendCalculator = require('./backend/computeFunc.js');
-
+const trendCalculator = require('./backend/computeFunc.js');
+const dataGraphTrends = require('./backend/gData4Graph.js');
 
 let bodyParser = require('body-parser');
 app.use(bodyParser.json()); // to support JSON-encoded bodies
@@ -26,21 +26,28 @@ app.get('/', function(req, res) {
 
 app.post('/getPatentsResults', function (req,response){
   let data=req.body;
-  patentTrends.getNumberOfPatents(data.technologies,"November 2 2017","December 2 2017",(err,res)=>{
+  patentTrends.getNumberOfPatents(data.technologies,new Date(Date.now() + -30*24*3600*1000).toDateString(),new Date().toDateString(),(err,res)=>{
     response.send(JSON.stringify(res));
   });
 });
 
 app.post('/getResults', function(req, response) {
   let data = req.body;
-  googleTrends.getAverage(data.technologies, 'November 1, 2017', 'December 1, 2017', (err, res) => {
+  googleTrends.getAverage(data.technologies, new Date(Date.now() + -30*24*3600*1000).toDateString(),new Date().toDateString(), (err, res) => {
+  	response.send(JSON.stringify(res));
+  });
+});
+
+app.post('/getDatas', function(req, response) {
+  let data = req.body;
+  googleTrends.getDataTrend(data.technologies,new Date(Date.now() + -30*24*3600*1000).toDateString(), new Date().toDateString(), (err, res) => {
   	response.send(JSON.stringify(res));
   });
 });
 
 app.post('/getSocialNetworkResults', function(req, response) {
 	let data = req.body;
-	socialTrends.getNumberOfPosts(data.technologies, 'November 1, 2017', 'December 1, 2017', (err, res) => {
+	socialTrends.getNumberOfPosts(data.technologies, new Date(Date.now() + -30*24*3600*1000).toDateString(), new Date().toDateString(), (err, res) => {
   	response.send(JSON.stringify(res));
 	});
 });
