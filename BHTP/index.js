@@ -51,6 +51,10 @@ app.get('/asd', function(req, res) {
   res.render('charts');
 });
 
+app.get('/asdasd', function(req, res) {
+  res.render('lineChart');
+});
+
 app.listen(8080, function() {
   console.log('the application is running on localhost:8080');
 });
