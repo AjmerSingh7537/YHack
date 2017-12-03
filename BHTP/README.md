@@ -32,6 +32,3 @@ basic usage:
   - can only be used for previous 30 days, but it's fine. Social media is not as important to find all posts from 1year ago .. 30 days is enough, to know if it is circulating or not.
 
   for more info: https://www.talkwalker.com/user-manual/api
-
-### Financial data
-  - Crunchbase
