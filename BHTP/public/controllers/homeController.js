@@ -53,6 +53,7 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 		}
 	}
 
+
 	// Get Patents trends results
 	$scope.getPatentsTrend = function() {
 		console.log("Calculating ...");
@@ -76,8 +77,8 @@ app.controller('homeController', ['$scope', '$http', function($scope, $http) {
 
 	// Executes all trends fetching functions
 	$scope.submit = function() {
-		$scope.getGoogleTrend();
+		//$scope.getGoogleTrend();
 		$scope.getSocialNetworkTrend();
-		$scope.getPatentsTrend();
+		//$scope.getPatentsTrend();
 	}
 }]);
