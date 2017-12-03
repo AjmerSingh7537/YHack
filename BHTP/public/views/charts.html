@@ -1,19 +1,23 @@
-<html>
-  <head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<head>
+    <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
     <script type="text/javascript">
       google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawStuff);
 
+      // console.log(angular);
+      var e = document.getElementById('app');
+      var $scope = angular.element(e).scope();
+      console.log("printing some shit: " + $scope);
+      let asd = [['Name of Technology', 'Percentage (%)']];
+      for (var index in $scope.calculations) {
+        if ($scope.calculations.hasOwnProperty(index)) {
+          asd.push([$scope.calculations[index].word, $scope.calculations[index].trendCalculation]);
+        }
+      }
+      console.log('asd: ' + asd);
+
       function drawStuff() {
-        var data = new google.visualization.arrayToDataTable([
-          ['Name of the Technology', 'Percentage (%)'],
-          ["Machine Learning", 83],
-          ["AR", 76],
-          ["AI", 56],
-          ["VR", 81],
-          ['Deep Learning', 78]
-        ]);
+        var data = new google.visualization.arrayToDataTable(asd);
 
         var options = {
           title: 'Hot Technology Predictor',
@@ -38,4 +42,3 @@
   <body>
     <div id="top_x_div" style="width: 900px; height: 500px;"></div>
   </body>
-</html>
