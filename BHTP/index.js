@@ -33,7 +33,9 @@ app.post('/getResults', function(req, response) {
   let data = req.body;
 
   googleTrends.getAverage(data.technologies, 'November 1, 2017', 'December 1, 2017', (err, res) => {
-  	response.send(JSON.stringify(res));
+  	//response.send(JSON.stringify(res));
+    console.log('res from index: ' + JSON.stringify(res));
+    response.render('charts', {asd: JSON.stringify(res)});
   });
 });
 
@@ -43,6 +45,10 @@ app.post('/getSocialNetworkResults', function(req, response) {
 	socialTrends.getNumberOfPosts(data.technologies, 'November 1, 2017', 'December 1, 2017', (err, res) => {
   	response.send(JSON.stringify(res));
 	});
+});
+
+app.get('/asd', function(req, res) {
+  res.render('charts');
 });
 
 app.listen(8080, function() {

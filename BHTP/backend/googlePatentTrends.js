@@ -1,4 +1,4 @@
-var request = require('request');
+const request = require('request');
 
 const _ = require('lodash');
 const patenter = "https://patents.google.com/xhr/query?url=q=";
