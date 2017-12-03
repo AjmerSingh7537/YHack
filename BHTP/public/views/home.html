@@ -65,7 +65,8 @@
               </div>
               <div class="card-block">
                 <blockquote class="card-blockquote">
-                  <p>This Technology or Keyword <b>"{{word}}"</b> has been processed through numerous statistics and has returned an overall probability that it will be trending in the near future at <cite title="Source Title"><b>{{calculations[$index].trendCalculation}}%</b>!</cite></p>
+                  <p>This Technology or Keyword <b>"{{word}}"</b> has been processed through numerous statistics and has returned an overall probability that it will be trending in the near future at <cite title="Source Title"><b>{{calculations[$index].trendCalculation}}%</b>!</cite>
+                  </br>It is predicted to continue emerging at a <b>Degree of {{calculations[$index].trendDegree}}</b></p>
                     <md-select class="pt-5" placeholder="See older trending statistics" ng-model="frame" md-on-open="loadTimeFrames()">
                       <md-option ng-value="frame" ng-repeat="frame in timeFrames">{{frame.name}}</md-option>
                     </md-select>
@@ -78,7 +79,7 @@
           </div>
         </div>
         <div class="col-lg-6" style="max-height: 270px;overflow-y: scroll">
-          <div class="card-block">
+          <div class="card-block" data-ng-if=calculations>
             <div data-ng-if=calculations>
               <p><b>Degree 4</b> Technologies are those are already emerged, trending, in high demand, and will continue to be</br>
                 <b>Degree 3</b> Technologies are those that are trending, in high demand, and will are not finished emerging</br>
