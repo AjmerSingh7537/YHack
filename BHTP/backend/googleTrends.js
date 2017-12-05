@@ -16,6 +16,7 @@ var getAverage = (keyword, startTime, endTime, callback) => {
         let data = JSON.parse(results);
         let values = [];
         let obj = data.default.timelineData;
+        console.log(data);
 
       for (var i in obj) {
         if (obj.hasOwnProperty(i)) {

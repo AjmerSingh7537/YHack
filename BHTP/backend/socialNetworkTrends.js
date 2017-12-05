@@ -1,22 +1,25 @@
 var request = require('request');
-
+var moment = require('moment');
 
 var getNumberOfPosts = (keyword, startTime, endTime, callback) => {
   let size = keyword.length-1;
   let total = [];
   keyword.map((value,key)=> {
-    //console.log(size);
-  //  console.log(keyword.length());
-    request("https://api.talkwalker.com/api/v1/search/histogram/published?access_token=demo&q="+value+"&interval=1d&min=1509690000&max=1512229311&pretty=true",
+    var dateNow = moment();
+    var dateOneMonthAgo = moment().subtract(1, 'm');
+
+    console.log(dateNow);
+    console.log(dateOneMonthAgo);
+
+    request("https://api.talkwalker.com/api/v1/search/histogram/published?access_token=demo&q="+value+"&interval=1d&pretty=true&min="+dateOneMonthAgo+"&max="+dateNow,
       function(err, res, body) {
 
-        let resultData = JSON.parse(body).result_histogram.data;
+        let resultData = JSON.parse(body).result_histogram;
         let totalFrequency = 0;
         let allFrequencies = [];
 
-      //
         if(resultData) {
-          resultData.map(freqInterval => {
+          resultData.data.map(freqInterval => {
             totalFrequency += Number(freqInterval.v);
             allFrequencies.push(freqInterval.v);
           })
