@@ -40,12 +40,12 @@ var calculateTrend = (trendAverage, socialNum, patentNum) => {
 
   if(trendAverage>75)
   {
-    total+=_.ceil((trendAverage*.75));
+    total+=_.ceil((trendAverage*.55));
     total+=socialPart(socialNum);
   }
   else
   {
-    total+=_.ceil((trendAverage*.5));
+    total+=_.ceil((trendAverage*.30));
     total+=socialPart(socialNum);
     total+=patentPart(patentNum);
   }
@@ -85,15 +85,15 @@ var patentPart = (patentNum) => {
 
 var socialPart = (socialNum) => {
   if(socialNum>= 300000)
-    return 25;
+    return 45;
   else if (socialNum>= 100000)
-    return 20;
+    return 40;
   else if(socialNum>= 50000)
-    return 15;
+    return 35;
   else if(socialNum>= 10000)
-    return 10;
+    return 30;
   else if(socialNum>= 1000)
-    return 5;
+    return 25;
   else
     return 0;
 }
